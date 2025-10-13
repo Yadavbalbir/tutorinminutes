@@ -248,7 +248,7 @@
 
 .tutors-page {
   min-height: calc(100vh - 80px);
-  padding: $spacing-xl 0;
+  padding: $spacing-xl 0 $spacing-3xl; // Added extra bottom padding
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 
   &__container {
@@ -294,6 +294,7 @@
     grid-template-columns: 300px 1fr;
     gap: $spacing-xl;
     align-items: start;
+    margin-bottom: $spacing-2xl; // Add bottom margin to prevent footer overlap
 
     @include tablet-up {
       grid-template-columns: 280px 1fr;
@@ -303,6 +304,7 @@
     @include mobile-only {
       grid-template-columns: 1fr;
       gap: $spacing-lg;
+      margin-bottom: $spacing-xl;
     }
   }
 
@@ -343,6 +345,7 @@
 
   &__main {
     min-height: 400px;
+    margin-bottom: $spacing-xl; // Ensure spacing before footer
   }
 
   &__controls {

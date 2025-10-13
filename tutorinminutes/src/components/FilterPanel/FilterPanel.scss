@@ -8,6 +8,9 @@
   height: fit-content;
   position: sticky;
   top: 90px;
+  max-height: calc(100vh - 120px); // Prevent overlap with footer
+  overflow-y: auto; // Allow scrolling if content is too long
+  z-index: 10; // Ensure it stays above content but below modals
 
   &--mobile {
     position: fixed;
@@ -21,6 +24,8 @@
     overflow-y: auto;
     transform: translateX(100%);
     transition: transform 0.3s ease;
+    max-height: 100vh; // Full height on mobile
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15); // Add shadow for better separation
 
     &.open {
       transform: translateX(0);
@@ -35,6 +40,14 @@
     bottom: 0;
     background: rgba($black, 0.5);
     z-index: $z-modal-backdrop;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 
   &__content {
@@ -370,12 +383,18 @@
 
   // Desktop version (side panel)
   @include desktop-up {
-    position: relative;
+    position: sticky;
+    top: 90px;
     width: 300px;
     height: auto;
-    background: transparent;
+    max-height: calc(100vh - 120px); // Prevent footer overlap
+    background: $white;
     opacity: 1;
     visibility: visible;
+    z-index: 10;
+    overflow-y: auto;
+    border: 1px solid rgba($primary-indigo, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
     &__content {
       position: static;
@@ -383,8 +402,7 @@
       height: auto;
       transform: none;
       border-radius: 12px;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      padding: $spacing-lg;
     }
 
     &__header {
@@ -395,6 +413,9 @@
     &__actions {
       position: static;
       border-radius: 0 0 12px 12px;
+      margin-top: $spacing-lg;
+      padding-top: $spacing-lg;
+      border-top: 1px solid rgba($primary-indigo, 0.1);
     }
   }
 }
