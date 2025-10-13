@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import './variables.scss';
+@import './mixins.scss';
+
+// CSS Reset and Base Styles
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  
+  @include mobile-only {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: 1.6;
+  color: $text-dark;
+  background-color: $neutral-gray;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-primary;
+  font-weight: $font-weight-semibold;
+  line-height: 1.2;
+  margin-bottom: $spacing-md;
+  color: $text-dark;
+}
+
+h1 {
+  font-size: $font-size-5xl;
+  font-weight: $font-weight-bold;
+  
+  @include mobile-only {
+    font-size: $font-size-4xl;
+  }
+}
+
+h2 {
+  font-size: $font-size-4xl;
+  
+  @include mobile-only {
+    font-size: $font-size-3xl;
+  }
+}
+
+h3 {
+  font-size: $font-size-3xl;
+  
+  @include mobile-only {
+    font-size: $font-size-2xl;
+  }
+}
+
+h4 {
+  font-size: $font-size-2xl;
+  
+  @include mobile-only {
+    font-size: $font-size-xl;
+  }
+}
+
+h5 {
+  font-size: $font-size-xl;
+}
+
+h6 {
+  font-size: $font-size-lg;
+}
+
+p {
+  margin-bottom: $spacing-md;
+  color: $text-light;
+}
+
+a {
+  color: $primary-indigo;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+  
+  &:hover {
+    color: $primary-aqua;
+  }
+}
+
+// Utility Classes
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  
+  @include tablet-up {
+    padding: 0 $spacing-lg;
+  }
+  
+  @include desktop-up {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.section {
+  padding: $spacing-3xl 0;
+  
+  @include mobile-only {
+    padding: $spacing-2xl 0;
+  }
+}
+
+// Button Classes
+.btn {
+  @include button-base;
+  
+  &.btn-primary {
+    @include button-primary;
+  }
+  
+  &.btn-secondary {
+    @include button-secondary;
+  }
+  
+  &.btn-ghost {
+    @include button-ghost;
+  }
+  
+  &.btn-sm {
+    padding: $spacing-xs $spacing-md;
+    font-size: $font-size-sm;
+  }
+  
+  &.btn-lg {
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-lg;
+  }
+}
+
+// Card Classes
+.card {
+  @include card-base;
+  padding: $spacing-lg;
+  
+  &.card-hover {
+    @include card-hover;
+  }
+  
+  &.card-sm {
+    padding: $spacing-md;
+  }
+  
+  &.card-lg {
+    padding: $spacing-xl;
+  }
+}
+
+// Grid System
+.grid {
+  display: grid;
+  gap: $spacing-lg;
+  
+  &.grid-1 {
+    grid-template-columns: 1fr;
+  }
+  
+  &.grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  &.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  
+  &.grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+// Flexbox Utilities
+.flex {
+  display: flex;
+  
+  &.flex-center {
+    @include flex-center;
+  }
+  
+  &.flex-between {
+    @include flex-between;
+  }
+  
+  &.flex-column {
+    @include flex-column;
+  }
+  
+  &.flex-column-center {
+    @include flex-column-center;
+  }
+  
+  &.flex-wrap {
+    flex-wrap: wrap;
+  }
+  
+  &.flex-nowrap {
+    flex-wrap: nowrap;
+  }
+}
+
+// Text Utilities
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-gradient {
+  @include gradient-text;
+}
+
+.text-truncate {
+  @include truncate-text;
+}
+
+// Spacing Utilities
+.mt-0 { margin-top: 0; }
+.mt-xs { margin-top: $spacing-xs; }
+.mt-sm { margin-top: $spacing-sm; }
+.mt-md { margin-top: $spacing-md; }
+.mt-lg { margin-top: $spacing-lg; }
+.mt-xl { margin-top: $spacing-xl; }
+.mt-2xl { margin-top: $spacing-2xl; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-xs { margin-bottom: $spacing-xs; }
+.mb-sm { margin-bottom: $spacing-sm; }
+.mb-md { margin-bottom: $spacing-md; }
+.mb-lg { margin-bottom: $spacing-lg; }
+.mb-xl { margin-bottom: $spacing-xl; }
+.mb-2xl { margin-bottom: $spacing-2xl; }
+
+// Animation Classes
+.fade-in {
+  @include fade-in;
+}
+
+.slide-up {
+  @include slide-up;
+}
+
+.bounce-in {
+  @include bounce-in;
+}
+
+// Form Elements
+input, textarea, select {
+  @include input-base;
+}
+
+label {
+  display: block;
+  margin-bottom: $spacing-xs;
+  font-weight: $font-weight-medium;
+  color: $text-dark;
+}
+
+// Loading Animation
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba($primary-indigo, 0.3);
+  border-radius: 50%;
+  border-top-color: $primary-indigo;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Responsive visibility
+.hide-mobile {
+  @include mobile-only {
+    display: none !important;
+  }
+}
+
+.hide-desktop {
+  @include desktop-up {
+    display: none !important;
+  }
+}
+
+.show-mobile {
+  display: none !important;
+  
+  @include mobile-only {
+    display: block !important;
+  }
+}

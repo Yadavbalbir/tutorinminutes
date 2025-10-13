@@ -1,0 +1,222 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.footer {
+  background: $text-dark;
+  color: $white;
+  margin-top: auto;
+
+  &__main {
+    padding: $spacing-3xl 0 $spacing-2xl;
+
+    @include mobile-only {
+      padding: $spacing-2xl 0 $spacing-xl;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: $spacing-3xl;
+
+    @include mobile-only {
+      grid-template-columns: 1fr;
+      gap: $spacing-2xl;
+    }
+
+    @include tablet-up {
+      grid-template-columns: 1fr 1.5fr;
+      gap: $spacing-2xl;
+    }
+  }
+
+  &__brand {
+    @include flex-column;
+    gap: $spacing-lg;
+  }
+
+  &__logo {
+    @include flex-center;
+    justify-content: flex-start;
+    gap: $spacing-sm;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: $spacing-md;
+
+    &-icon {
+      @include flex-center;
+      width: 40px;
+      height: 40px;
+      background: $gradient-primary;
+      border-radius: $border-radius-lg;
+      color: $white;
+    }
+
+    &-text {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $white;
+    }
+  }
+
+  &__description {
+    font-size: $font-size-base;
+    line-height: 1.6;
+    color: rgba($white, 0.8);
+    margin-bottom: $spacing-lg;
+  }
+
+  &__contact {
+    @include flex-column;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__contact-item {
+    @include flex-center;
+    justify-content: flex-start;
+    gap: $spacing-sm;
+    font-size: $font-size-sm;
+    color: rgba($white, 0.8);
+  }
+
+  &__social {
+    @include flex-center;
+    justify-content: flex-start;
+    gap: $spacing-md;
+  }
+
+  &__social-link {
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    background: rgba($white, 0.1);
+    border-radius: $border-radius-lg;
+    color: rgba($white, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background: $primary-indigo;
+      color: $white;
+    }
+  }
+
+  &__links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-xl;
+
+    @include mobile-only {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-lg;
+    }
+  }
+
+  &__links-section {
+    @include flex-column;
+    gap: $spacing-md;
+  }
+
+  &__links-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $white;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__links-list {
+    list-style: none;
+    @include flex-column;
+    gap: $spacing-sm;
+  }
+
+  &__link {
+    font-size: $font-size-sm;
+    color: rgba($white, 0.7);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: $primary-aqua;
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid rgba($white, 0.1);
+    padding: $spacing-xl 0;
+
+    &-content {
+      @include flex-between;
+      align-items: center;
+      gap: $spacing-lg;
+
+      @include mobile-only {
+        flex-direction: column;
+        text-align: center;
+        gap: $spacing-md;
+      }
+    }
+  }
+
+  &__legal-links {
+    @include flex-center;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+
+    @include mobile-only {
+      order: 2;
+      justify-content: center;
+    }
+  }
+
+  &__legal-link {
+    font-size: $font-size-xs;
+    color: rgba($white, 0.6);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: $primary-aqua;
+    }
+  }
+
+  &__separator {
+    color: rgba($white, 0.3);
+    font-size: $font-size-xs;
+  }
+
+  &__copyright {
+    @include flex-center;
+    gap: $spacing-xs;
+
+    @include mobile-only {
+      order: 1;
+    }
+
+    p {
+      font-size: $font-size-xs;
+      color: rgba($white, 0.6);
+      margin: 0;
+      @include flex-center;
+      gap: 4px;
+    }
+  }
+
+  &__heart {
+    color: $error;
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

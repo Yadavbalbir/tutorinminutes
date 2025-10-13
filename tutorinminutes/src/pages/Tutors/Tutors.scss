@@ -1,0 +1,602 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.tutors {
+  min-height: 100vh;
+  background: $neutral-gray;
+
+  &__header {
+    background: linear-gradient(135deg, 
+      rgba($primary-indigo, 0.1) 0%, 
+      rgba($primary-aqua, 0.05) 100%
+    );
+    padding: $spacing-3xl 0 $spacing-2xl;
+
+    @include mobile-only {
+      padding: $spacing-2xl 0 $spacing-xl;
+    }
+
+    &-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+
+      h1 {
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-bold;
+        margin-bottom: $spacing-md;
+        color: $text-dark;
+
+        @include mobile-only {
+          font-size: $font-size-3xl;
+        }
+      }
+
+      p {
+        font-size: $font-size-lg;
+        color: $text-light;
+        margin-bottom: $spacing-2xl;
+      }
+    }
+  }
+
+  &__search-form {
+    @include flex-center;
+    gap: $spacing-md;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include mobile-only {
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+  }
+
+  &__search-input-wrapper {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+
+    @include mobile-only {
+      width: 100%;
+      min-width: auto;
+    }
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-light;
+    z-index: 2;
+  }
+
+  &__search-input {
+    width: 100%;
+    padding: $spacing-md $spacing-md $spacing-md 3rem;
+    border: 2px solid rgba($primary-indigo, 0.2);
+    border-radius: $border-radius-xl;
+    font-size: $font-size-base;
+    background: $white;
+    transition: all 0.3s ease-in-out;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-indigo;
+      box-shadow: 0 0 0 4px rgba($primary-indigo, 0.1);
+    }
+  }
+
+  &__main {
+    padding: $spacing-2xl 0;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: $spacing-2xl;
+
+    @include mobile-only {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    @include tablet-up {
+      grid-template-columns: 280px 1fr;
+      gap: $spacing-xl;
+    }
+  }
+
+  &__filters-sidebar {
+    @include mobile-only {
+      display: none;
+    }
+  }
+
+  &__content {
+    min-width: 0; // Prevent grid overflow
+  }
+
+  &__toolbar {
+    @include flex-between;
+    margin-bottom: $spacing-xl;
+    padding: $spacing-md 0;
+    border-bottom: 1px solid rgba($primary-indigo, 0.1);
+
+    @include mobile-only {
+      flex-direction: column;
+      gap: $spacing-md;
+      align-items: stretch;
+    }
+  }
+
+  &__results-info {
+    font-size: $font-size-base;
+    color: $text-light;
+    font-weight: $font-weight-medium;
+
+    @include mobile-only {
+      text-align: center;
+    }
+  }
+
+  &__toolbar-actions {
+    @include flex-center;
+    gap: $spacing-md;
+
+    @include mobile-only {
+      justify-content: space-between;
+    }
+  }
+
+  &__filter-toggle {
+    @include flex-center;
+    gap: $spacing-xs;
+    padding: $spacing-sm $spacing-md;
+    background: $white;
+    border: 2px solid rgba($primary-indigo, 0.2);
+    border-radius: $border-radius-lg;
+    color: $primary-indigo;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: rgba($primary-indigo, 0.05);
+      border-color: $primary-indigo;
+    }
+  }
+
+  &__view-toggle {
+    @include flex-center;
+    background: $white;
+    border-radius: $border-radius-lg;
+    border: 2px solid rgba($primary-indigo, 0.2);
+    overflow: hidden;
+  }
+
+  &__view-btn {
+    @include flex-center;
+    padding: $spacing-sm $spacing-md;
+    background: transparent;
+    border: none;
+    color: $text-light;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: rgba($primary-indigo, 0.05);
+      color: $primary-indigo;
+    }
+
+    &--active {
+      background: $primary-indigo;
+      color: $white;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    gap: $spacing-xl;
+
+    &--grid {
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+
+      @include mobile-only {
+        grid-template-columns: 1fr;
+        gap: $spacing-lg;
+      }
+    }
+
+    &--list {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+
+  &__empty-state {
+    @include flex-column-center;
+    padding: $spacing-3xl;
+    text-align: center;
+    color: $text-light;
+
+    h3 {
+      font-size: $font-size-xl;
+      margin-bottom: $spacing-md;
+      color: $text-dark;
+    }
+
+    p {
+      font-size: $font-size-base;
+      margin-bottom: 0;
+    }
+  }
+
+  &__empty-icon {
+    color: $text-light;
+    margin-bottom: $spacing-lg;
+  }
+}
+
+// Responsive adjustments
+@include large-desktop-up {
+  .tutors__grid--grid {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+}
+
+.tutors-page {
+  min-height: calc(100vh - 80px);
+  padding: $spacing-xl 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+
+  &__container {
+    max-width: $container-xl;
+    margin: 0 auto;
+    padding: 0 $spacing-lg;
+
+    @include mobile-only {
+      padding: 0 $spacing-md;
+    }
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+
+    h1 {
+      font-size: $font-size-3xl;
+      font-weight: $font-weight-bold;
+      color: $text-dark;
+      margin-bottom: $spacing-md;
+      @include gradient-text;
+
+      @include mobile-only {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    p {
+      font-size: $font-size-lg;
+      color: $text-light;
+      max-width: 600px;
+      margin: 0 auto;
+
+      @include mobile-only {
+        font-size: $font-size-base;
+      }
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: $spacing-xl;
+    align-items: start;
+
+    @include tablet-up {
+      grid-template-columns: 280px 1fr;
+      gap: $spacing-lg;
+    }
+
+    @include mobile-only {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+
+  &__filters {
+    @include mobile-only {
+      display: none;
+    }
+  }
+
+  &__mobile-filters {
+    display: none;
+
+    @include mobile-only {
+      display: block;
+      margin-bottom: $spacing-lg;
+    }
+  }
+
+  &__mobile-filter-btn {
+    @include flex-center;
+    gap: $spacing-sm;
+    width: 100%;
+    padding: $spacing-md;
+    background: $white;
+    border: 2px solid rgba($primary-indigo, 0.2);
+    border-radius: $border-radius-lg;
+    color: $primary-indigo;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: rgba($primary-indigo, 0.05);
+      border-color: $primary-indigo;
+    }
+  }
+
+  &__main {
+    min-height: 400px;
+  }
+
+  &__controls {
+    @include flex-between;
+    margin-bottom: $spacing-lg;
+    padding: $spacing-md;
+    background: $white;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-sm;
+
+    @include mobile-only {
+      flex-direction: column;
+      gap: $spacing-md;
+      align-items: stretch;
+    }
+  }
+
+  &__results-info {
+    @include flex-center;
+    gap: $spacing-sm;
+    font-size: $font-size-sm;
+    color: $text-light;
+
+    @include mobile-only {
+      justify-content: center;
+    }
+  }
+
+  &__sort {
+    @include flex-center;
+    gap: $spacing-sm;
+
+    @include mobile-only {
+      justify-content: center;
+    }
+
+    label {
+      font-size: $font-size-sm;
+      color: $text-light;
+    }
+
+    select {
+      padding: $spacing-xs $spacing-sm;
+      border: 2px solid rgba($primary-indigo, 0.2);
+      border-radius: $border-radius-md;
+      font-size: $font-size-sm;
+      background: $white;
+      color: $text-dark;
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-indigo;
+      }
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+
+    @include mobile-only {
+      grid-template-columns: 1fr;
+      gap: $spacing-md;
+    }
+  }
+
+  &__loading {
+    @include flex-column-center;
+    gap: $spacing-lg;
+    padding: $spacing-xl * 2;
+    text-align: center;
+
+    &-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba($primary-indigo, 0.2);
+      border-top: 3px solid $primary-indigo;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    &-text {
+      font-size: $font-size-lg;
+      color: $text-light;
+    }
+  }
+
+  &__empty {
+    @include flex-column-center;
+    gap: $spacing-lg;
+    padding: $spacing-xl * 2;
+    text-align: center;
+    background: $white;
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-sm;
+
+    &-icon {
+      width: 64px;
+      height: 64px;
+      color: $text-light;
+      opacity: 0.5;
+    }
+
+    &-title {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      color: $text-dark;
+      margin: 0;
+    }
+
+    &-description {
+      font-size: $font-size-base;
+      color: $text-light;
+      max-width: 400px;
+      margin: 0;
+    }
+
+    &-actions {
+      @include flex-center;
+      gap: $spacing-md;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__pagination {
+    @include flex-center;
+    gap: $spacing-sm;
+    margin-top: $spacing-xl;
+
+    &-btn {
+      @include flex-center;
+      width: 40px;
+      height: 40px;
+      border: 2px solid rgba($primary-indigo, 0.2);
+      border-radius: $border-radius-md;
+      background: $white;
+      color: $text-light;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover:not(:disabled) {
+        border-color: $primary-indigo;
+        color: $primary-indigo;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      &--active {
+        background: $primary-indigo;
+        border-color: $primary-indigo;
+        color: $white;
+      }
+    }
+
+    &-info {
+      font-size: $font-size-sm;
+      color: $text-light;
+      margin: 0 $spacing-md;
+    }
+  }
+}
+
+// Animations
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Tutor card animations in grid
+.tutors-page__grid .tutor-card {
+  animation: fadeInUp 0.5s ease-out forwards;
+  animation-delay: calc(var(--card-index, 0) * 0.1s);
+}
+
+// Filter panel overlay for mobile
+.filter-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($black, 0.5);
+  z-index: $z-modal-backdrop;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Responsive adjustments
+@include mobile-only {
+  .tutors-page {
+    padding: $spacing-lg 0;
+
+    &__content {
+      gap: $spacing-md;
+    }
+
+    &__grid {
+      gap: $spacing-md;
+    }
+
+    &__pagination {
+      gap: $spacing-xs;
+      
+      &-btn {
+        width: 36px;
+        height: 36px;
+        font-size: $font-size-xs;
+      }
+      
+      &-info {
+        font-size: $font-size-xs;
+        margin: 0 $spacing-sm;
+      }
+    }
+  }
+}
+
+@include tablet-up {
+  .tutors-page {
+    &__grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+  }
+}
+
+@include desktop-up {
+  .tutors-page {
+    &__grid {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+  }
+}

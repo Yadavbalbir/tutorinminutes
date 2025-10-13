@@ -1,0 +1,341 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.home {
+  min-height: 100vh;
+
+  &__section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto $spacing-3xl;
+
+    h2 {
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-md;
+      
+      @include mobile-only {
+        font-size: $font-size-3xl;
+      }
+    }
+
+    p {
+      font-size: $font-size-lg;
+      color: $text-light;
+      margin-bottom: 0;
+    }
+  }
+
+  // Features Section
+  &__features {
+    background: $white;
+
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: $spacing-2xl;
+
+      @include mobile-only {
+        grid-template-columns: 1fr;
+        gap: $spacing-xl;
+      }
+    }
+  }
+
+  &__feature-card {
+    @include card-base;
+    padding: $spacing-2xl;
+    text-align: center;
+    border: 1px solid rgba($primary-indigo, 0.1);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: $shadow-xl;
+      border-color: rgba($primary-indigo, 0.2);
+    }
+
+    h3 {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-md;
+      color: $text-dark;
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $text-light;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+  }
+
+  &__feature-icon {
+    @include flex-center;
+    width: 80px;
+    height: 80px;
+    background: $gradient-primary;
+    border-radius: $border-radius-2xl;
+    color: $white;
+    margin: 0 auto $spacing-lg;
+
+    @include mobile-only {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  // Tutors Section
+  &__tutors {
+    background: $neutral-gray;
+
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: $spacing-2xl;
+
+      @include mobile-only {
+        grid-template-columns: 1fr;
+        gap: $spacing-xl;
+      }
+    }
+
+    &-cta {
+      text-align: center;
+      margin-top: $spacing-3xl;
+
+      .btn {
+        @include flex-center;
+        gap: $spacing-sm;
+      }
+    }
+  }
+
+  // Subjects Section
+  &__subjects {
+    background: $white;
+
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: $spacing-xl;
+
+      @include mobile-only {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-lg;
+      }
+    }
+  }
+
+  &__subject-card {
+    @include card-base;
+    padding: $spacing-xl;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid rgba($primary-indigo, 0.1);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: $shadow-lg;
+      border-color: rgba($primary-indigo, 0.2);
+    }
+
+    h3 {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-xs;
+      color: $text-dark;
+    }
+
+    p {
+      font-size: $font-size-sm;
+      color: $text-light;
+      margin-bottom: 0;
+    }
+
+    @include mobile-only {
+      padding: $spacing-lg;
+    }
+  }
+
+  &__subject-icon {
+    font-size: 3rem;
+    margin-bottom: $spacing-md;
+    display: block;
+
+    @include mobile-only {
+      font-size: 2.5rem;
+    }
+  }
+
+  // How It Works Section
+  &__how-it-works {
+    background: $neutral-gray;
+  }
+
+  &__steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-2xl;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    @include mobile-only {
+      grid-template-columns: 1fr;
+      gap: $spacing-xl;
+    }
+
+    @include tablet-up {
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+    }
+  }
+
+  &__step {
+    @include card-base;
+    padding: $spacing-2xl;
+    text-align: center;
+    border: 1px solid rgba($primary-indigo, 0.1);
+    position: relative;
+
+    h3 {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-md;
+      color: $text-dark;
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $text-light;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    @include mobile-only {
+      padding: $spacing-xl;
+    }
+  }
+
+  &__step-number {
+    @include flex-center;
+    width: 60px;
+    height: 60px;
+    background: $gradient-primary;
+    border-radius: 50%;
+    color: $white;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    margin: 0 auto $spacing-lg;
+    position: relative;
+    z-index: 2;
+
+    @include mobile-only {
+      width: 50px;
+      height: 50px;
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__step-arrow {
+    @include flex-center;
+    color: $primary-indigo;
+
+    @include mobile-only {
+      display: none;
+    }
+  }
+
+  // CTA Section
+  &__cta {
+    background: linear-gradient(135deg, $primary-indigo 0%, $primary-aqua 100%);
+    color: $white;
+
+    &-content {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+
+      h2 {
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-bold;
+        margin-bottom: $spacing-md;
+        color: $white;
+
+        @include mobile-only {
+          font-size: $font-size-3xl;
+        }
+      }
+
+      p {
+        font-size: $font-size-lg;
+        margin-bottom: $spacing-2xl;
+        color: rgba($white, 0.9);
+      }
+    }
+
+    &-buttons {
+      @include flex-center;
+      gap: $spacing-lg;
+      flex-wrap: wrap;
+
+      .btn {
+        min-width: 200px;
+        border: 2px solid rgba($white, 0.2);
+
+        &.btn-primary {
+          background: $white;
+          color: $primary-indigo;
+
+          &:hover {
+            background: rgba($white, 0.9);
+          }
+        }
+
+        &.btn-secondary {
+          background: transparent;
+          color: $white;
+          border-color: $white;
+
+          &:hover {
+            background: $white;
+            color: $primary-indigo;
+          }
+        }
+
+        @include mobile-only {
+          width: 100%;
+          min-width: auto;
+        }
+      }
+    }
+  }
+}
+
+// Animation classes for scroll-triggered animations
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive grid adjustments
+@include large-desktop-up {
+  .home__features-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .home__tutors-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .home__subjects-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

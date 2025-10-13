@@ -1,0 +1,407 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.filter-panel {
+  background: $white;
+  border-radius: $border-radius-xl;
+  border: 1px solid rgba($primary-indigo, 0.1);
+  height: fit-content;
+  position: sticky;
+  top: 90px;
+
+  &--mobile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 90%;
+    max-width: 400px;
+    z-index: $z-modal;
+    border-radius: 0;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($black, 0.5);
+    z-index: $z-modal-backdrop;
+  }
+
+  &__content {
+    padding: $spacing-lg;
+
+    @include mobile-only {
+      padding: $spacing-md;
+    }
+  }
+
+  &__header {
+    @include flex-between;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid rgba($primary-indigo, 0.1);
+  }
+
+  &__title {
+    @include flex-center;
+    gap: $spacing-sm;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $text-dark;
+  }
+
+  &__count {
+    font-size: $font-size-xs;
+    color: $text-light;
+    background: rgba($primary-indigo, 0.1);
+    padding: 2px $spacing-xs;
+    border-radius: $border-radius-sm;
+    margin-left: $spacing-sm;
+  }
+
+  &__close-btn {
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    border-radius: $border-radius-lg;
+    color: $text-light;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: rgba($primary-indigo, 0.05);
+      color: $primary-indigo;
+    }
+  }
+
+  &__section {
+    margin-bottom: $spacing-lg;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $text-dark;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__select {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    border: 2px solid rgba($primary-indigo, 0.2);
+    border-radius: $border-radius-lg;
+    font-size: $font-size-sm;
+    background: $white;
+    color: $text-dark;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-indigo;
+      box-shadow: 0 0 0 3px rgba($primary-indigo, 0.1);
+    }
+  }
+
+  &__mode-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-xs;
+  }
+
+  &__mode-btn {
+    @include flex-center;
+    gap: $spacing-xs;
+    padding: $spacing-sm;
+    border: 2px solid rgba($primary-indigo, 0.2);
+    border-radius: $border-radius-lg;
+    background: $white;
+    color: $text-light;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      border-color: $primary-indigo;
+      color: $primary-indigo;
+    }
+
+    &--active {
+      background: $primary-indigo;
+      border-color: $primary-indigo;
+      color: $white;
+    }
+  }
+
+  &__price-range {
+    position: relative;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__range-input {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba($primary-indigo, 0.2);
+    outline: none;
+    appearance: none;
+    margin-bottom: $spacing-xs;
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: $primary-indigo;
+      cursor: pointer;
+      box-shadow: $shadow-sm;
+    }
+
+    &::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: $primary-indigo;
+      cursor: pointer;
+      border: none;
+      box-shadow: $shadow-sm;
+    }
+  }
+
+  &__price-labels {
+    @include flex-between;
+    font-size: $font-size-xs;
+    color: $text-light;
+  }
+
+  &__rating-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: $spacing-xs;
+  }
+
+  &__rating-btn {
+    @include flex-center;
+    gap: 4px;
+    padding: $spacing-xs;
+    border: 2px solid rgba($primary-indigo, 0.2);
+    border-radius: $border-radius-md;
+    background: $white;
+    color: $text-light;
+    font-size: $font-size-xs;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      border-color: $primary-indigo;
+      color: $primary-indigo;
+    }
+
+    &--active {
+      background: $primary-indigo;
+      border-color: $primary-indigo;
+      color: $white;
+
+      .filter-panel__star--filled {
+        color: $white;
+      }
+    }
+  }
+
+  &__star {
+    &--filled {
+      color: #fbbf24;
+      fill: currentColor;
+    }
+  }
+
+  &__location {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    input {
+      flex: 1;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      transition: border-color 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-indigo;
+        box-shadow: 0 0 0 3px rgba($primary-indigo, 0.1);
+      }
+
+      &::placeholder {
+        color: $text-light;
+      }
+    }
+
+    button {
+      padding: 0.75rem;
+      background: $primary-indigo;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: #2c3e99; // Using a direct color instead of darken()
+      }
+
+      &:disabled {
+        background: #9ca3af;
+        cursor: not-allowed;
+      }
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  &__subjects {
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      margin-top: 1rem;
+
+      @include mobile-only {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .subject-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: #f9fafb;
+      }
+
+      input[type="checkbox"] {
+        margin: 0;
+        accent-color: $primary-indigo;
+      }
+
+      label {
+        font-size: 0.875rem;
+        color: $text-dark;
+        cursor: pointer;
+        flex: 1;
+      }
+    }
+  }
+
+  &__actions {
+    @include flex-center;
+    gap: $spacing-md;
+    margin-top: $spacing-xl;
+    padding-top: $spacing-lg;
+    border-top: 1px solid rgba($primary-indigo, 0.1);
+
+    @include mobile-only {
+      flex-direction: column;
+    }
+  }
+
+  &__reset-btn {
+    @include flex-center;
+    gap: $spacing-xs;
+    padding: $spacing-sm $spacing-md;
+    background: none;
+    border: 2px solid rgba($primary-indigo, 0.2);
+    border-radius: $border-radius-lg;
+    color: $text-light;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      border-color: $primary-indigo;
+      color: $primary-indigo;
+    }
+
+    @include mobile-only {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  &__apply-btn {
+    flex: 1;
+    font-size: $font-size-sm;
+
+    @include mobile-only {
+      width: 100%;
+    }
+  }
+
+  // Desktop version (side panel)
+  @include desktop-up {
+    position: relative;
+    width: 300px;
+    height: auto;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+
+    &__content {
+      position: static;
+      width: 100%;
+      height: auto;
+      transform: none;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    &__header {
+      position: static;
+      border-radius: 12px 12px 0 0;
+    }
+
+    &__actions {
+      position: static;
+      border-radius: 0 0 12px 12px;
+    }
+  }
+}
+
+// Responsive behavior
+@include mobile-only {
+  .filter-panel:not(.filter-panel--mobile) {
+    display: none;
+  }
+}

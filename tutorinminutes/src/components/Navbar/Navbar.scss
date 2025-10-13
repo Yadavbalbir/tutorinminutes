@@ -1,0 +1,305 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: $z-sticky;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba($primary-indigo, 0.1);
+  transition: all 0.3s ease-in-out;
+
+  &__container {
+    @include flex-between;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+    height: 70px;
+
+    @include tablet-up {
+      padding: 0 $spacing-lg;
+    }
+
+    @include desktop-up {
+      padding: 0 $spacing-xl;
+    }
+  }
+
+  &__logo {
+    text-decoration: none;
+    color: inherit;
+
+    &-content {
+      @include flex-center;
+      gap: $spacing-sm;
+    }
+
+    &-icon {
+      @include flex-center;
+      width: 40px;
+      height: 40px;
+      background: $gradient-primary;
+      border-radius: $border-radius-lg;
+      color: $white;
+    }
+
+    &-text {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $text-dark;
+
+      @include mobile-only {
+        display: none;
+      }
+    }
+  }
+
+  &__nav {
+    &-list {
+      @include flex-center;
+      gap: $spacing-lg;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &-item {
+      position: relative;
+    }
+
+    &-link {
+      @include flex-center;
+      gap: $spacing-xs;
+      padding: $spacing-sm $spacing-md;
+      color: $text-light;
+      text-decoration: none;
+      font-weight: $font-weight-medium;
+      border-radius: $border-radius-lg;
+      transition: all 0.2s ease-in-out;
+      position: relative;
+
+      &:hover {
+        color: $primary-indigo;
+        background: rgba($primary-indigo, 0.05);
+      }
+
+      &--active {
+        color: $primary-indigo;
+        background: rgba($primary-indigo, 0.1);
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 20px;
+          height: 2px;
+          background: $gradient-primary;
+          border-radius: 1px;
+        }
+      }
+    }
+  }
+
+  &__actions {
+    @include flex-center;
+    gap: $spacing-md;
+  }
+
+  &__notification-btn {
+    position: relative;
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    border-radius: $border-radius-lg;
+    color: $text-light;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: rgba($primary-indigo, 0.05);
+      color: $primary-indigo;
+    }
+  }
+
+  &__notification-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 18px;
+    height: 18px;
+    background: $error;
+    color: $white;
+    border-radius: 50%;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    @include flex-center;
+  }
+
+  &__profile-dropdown {
+    position: relative;
+  }
+
+  &__profile-btn {
+    @include flex-center;
+    gap: $spacing-sm;
+    padding: $spacing-xs $spacing-sm;
+    background: none;
+    border: none;
+    border-radius: $border-radius-lg;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: rgba($primary-indigo, 0.05);
+    }
+  }
+
+  &__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    &-placeholder {
+      @include flex-center;
+      width: 32px;
+      height: 32px;
+      background: $gradient-primary;
+      border-radius: 50%;
+      color: $white;
+    }
+  }
+
+  &__dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: $spacing-sm;
+    min-width: 200px;
+    background: $white;
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-xl;
+    border: 1px solid rgba($primary-indigo, 0.1);
+    overflow: hidden;
+    z-index: $z-dropdown;
+  }
+
+  &__dropdown-item {
+    @include flex-center;
+    gap: $spacing-sm;
+    width: 100%;
+    padding: $spacing-md $spacing-lg;
+    background: none;
+    border: none;
+    text-align: left;
+    text-decoration: none;
+    color: $text-dark;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: rgba($primary-indigo, 0.05);
+      color: $primary-indigo;
+    }
+
+    &--logout {
+      color: $error;
+      border-top: 1px solid rgba($primary-indigo, 0.1);
+
+      &:hover {
+        background: rgba($error, 0.05);
+        color: $error;
+      }
+    }
+  }
+
+  &__auth-buttons {
+    @include flex-center;
+    gap: $spacing-md;
+  }
+
+  &__mobile-toggle {
+    @include flex-center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    border-radius: $border-radius-lg;
+    color: $text-dark;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: rgba($primary-indigo, 0.05);
+      color: $primary-indigo;
+    }
+  }
+
+  &__mobile-menu {
+    background: $white;
+    border-top: 1px solid rgba($primary-indigo, 0.1);
+    overflow: hidden;
+
+    &-content {
+      padding: $spacing-lg;
+    }
+
+    &-nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      margin-bottom: $spacing-xl;
+    }
+
+    &-nav-item {
+      margin-bottom: $spacing-sm;
+    }
+
+    &-nav-link {
+      @include flex-center;
+      justify-content: flex-start;
+      gap: $spacing-md;
+      width: 100%;
+      padding: $spacing-md;
+      color: $text-dark;
+      text-decoration: none;
+      font-weight: $font-weight-medium;
+      border-radius: $border-radius-lg;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        background: rgba($primary-indigo, 0.05);
+        color: $primary-indigo;
+      }
+
+      &--active {
+        background: rgba($primary-indigo, 0.1);
+        color: $primary-indigo;
+      }
+    }
+  }
+
+  &__mobile-auth {
+    @include flex-column;
+    gap: $spacing-md;
+    padding-top: $spacing-lg;
+    border-top: 1px solid rgba($primary-indigo, 0.1);
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+// Scroll behavior
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: $shadow-md;
+}
