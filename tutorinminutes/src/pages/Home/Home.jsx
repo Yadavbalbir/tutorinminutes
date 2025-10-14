@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import Hero from '../../components/Hero/Hero';
 import TutorCard from '../../components/TutorCard/TutorCard';
+import ChatWidget from '../../components/ChatWidget/ChatWidget';
 import useStore from '../../context/store';
 import './Home.scss';
 
@@ -347,6 +348,8 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+
+      <ChatWidget />
     </div>
   );
 };
