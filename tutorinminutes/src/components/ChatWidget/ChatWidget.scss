@@ -278,7 +278,7 @@
 
             @include mobile-only {
               max-width: 85%;
-              border-radius: $border-radius-lg $border-radius-lg $border-radius-xs $border-radius-lg;
+              border-radius: $border-radius-lg $border-radius-lg $border-radius-sm $border-radius-lg;
             }
 
             p {
@@ -306,7 +306,7 @@
 
             @include mobile-only {
               max-width: 90%;
-              border-radius: $border-radius-lg $border-radius-lg $border-radius-lg $border-radius-xs;
+              border-radius: $border-radius-lg $border-radius-lg $border-radius-lg $border-radius-sm;
             }
 
             p {
